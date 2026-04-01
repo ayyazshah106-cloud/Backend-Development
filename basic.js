@@ -45,8 +45,8 @@
 // }
 
 // <===================Objects=====================>
-var user = {
-  name :"ayyaz",
-  age: 27
-}
-console.log(user.age);
+// var user = {
+//   name :"ayyaz",
+//   age: 27
+// }
+// console.log(user.age);
