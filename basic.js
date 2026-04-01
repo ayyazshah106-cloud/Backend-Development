@@ -1,3 +1,7 @@
+const data = require('./data');
+console.log(data);
+
+
 //  // <===================Variables=====================>
 //  var a = 20; //Function scope
 //  let b =10;  //Block scope 
