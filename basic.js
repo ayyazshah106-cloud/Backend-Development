@@ -1,5 +1,10 @@
-const data = require('./data');
-console.log(data);
+// //  // <===================Import Data from another file=====================>
+
+// const data = require("./data");
+// console.log(data);
+//Destructure way
+// const {userName} = require("./data");
+// console.log(userName)
 
 
 //  // <===================Variables=====================>
