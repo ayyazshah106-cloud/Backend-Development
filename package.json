@@ -1,0 +1,24 @@
+{
+  "name": "2026",
+  "version": "1.0.0",
+  "description": "make pakage json",
+  "homepage": "https://github.com/ayyazshah106-cloud/Backend-Development#readme",
+  "bugs": {
+    "url": "https://github.com/ayyazshah106-cloud/Backend-Development/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayyazshah106-cloud/Backend-Development.git"
+  },
+  "license": "ISC",
+  "author": "ayyaz",
+  "type": "commonjs",
+  "main": "colors.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
+}
