@@ -17,7 +17,5 @@
 // fs.writeFileSync('Create_File.txt','Create file with node js');l
 // // file name.type and file data "require import the modules"
 // repal terminal par code run karna
- var a = 20;
- let b =10;
- console.log(a+b);
+
 
