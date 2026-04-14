@@ -24,3 +24,6 @@ http.createServer((req,resp)=>{
   resp.write(JSON.stringify(userData));
   resp.end();
 }).listen(4800);
+
+//get request method ko directly browser par acess kar sktay hain
+// thunderclient
