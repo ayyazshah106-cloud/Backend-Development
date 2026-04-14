@@ -1,6 +1,7 @@
 const http = require('http');
 http.createServer((req,resp)=>{
-  console.log(req.method);
+  console.log(req.url
+  );
 if(req.url=='/'){
   resp.write("<h1>Home page<h1>")
 }
