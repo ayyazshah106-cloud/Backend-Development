@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 
 http.createServer((req, resp) => {
-    fs.readFile('html/form.html', 'utf-8', (error, data) => {
+    fs.readFile('form.html', 'utf-8', (error, data) => {
         if (error) {
             resp.writeHead(500, { "content-type": "text/plain" });
             resp.end('Internal server error');
@@ -18,4 +18,4 @@ http.createServer((req, resp) => {
         }
         resp.end();
     });
-}).listen(3200);
+}).listen(3100);
