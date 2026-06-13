@@ -21,8 +21,8 @@
   "dependencies": {
     "colors": "^1.4.0",
     "express": "^5.2.1",
+    "mongodb": "^7.3.0",
     "nodemon": "^3.1.14"
   },
-  "devDependencies": {},
   "keywords": []
 }

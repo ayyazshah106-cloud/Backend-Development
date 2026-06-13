@@ -4,11 +4,11 @@ import express from "express";
 const app = express();
 
 
-// Home Route
+// Root Route
 app.get("/", (req, resp) => {
 
   // Array of users
-  const users = ["ayyaz", "nawaz", "Aqsa"];
+  const users = ["ayyaz", "nawaz", "Aqsa","mohsin","mateen"];
 
   // Start HTML unordered list
   let data = `<ul>`;
@@ -39,6 +39,8 @@ app.get("/user/:name", (req, resp) => {
 
   // Get username from URL params
   const userName = req.params.name;
+  // userName.toUpperCase();
+  
 
   // Send dynamic response
   resp.send(`This is ${userName} page`);
