@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import { Routes, Route } from "react-router-dom";
 import Add_task from "./components/Add_task";
 import List from "./components/List";
+import UpdateTask from "./components/UpdateTask";
 
 function App() {
   return (
@@ -13,11 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<List />} />
         <Route path="/Add" element={<Add_task />} />
+        <Route path="/updateTask/:id" element={<UpdateTask />} />
       </Routes>
-
-      <div className="grid place-items-center h-screen font-bold text-white">
-        <h1>Todo List App</h1>
-      </div>
     </>
   );
 }

@@ -9,6 +9,7 @@ const NavBar = () => {
           <Link to="/">List</Link>
         </li>
         <li>
+          <Link to="/">List</Link>
           <Link to="/Add">AddTodo</Link>
         </li>
       </ul>

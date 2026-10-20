@@ -1,10 +1,11 @@
 import React, { use, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Add_task = () => {
   const [task, setTask] = useState("");
+  const navigate = useNavigate();
   const handleTaskAdd = async () => {
-    let result = await fetch("http://localhost:3000/add", {
+    let result = await fetch("http://localhost:3200/add", {
       method: "post",
       body: JSON.stringify(task),
       headers: {
@@ -13,6 +14,7 @@ const Add_task = () => {
     });
     result = await result.json();
     if (result) {
+      navigate("/");
       console.log("resulagaya hai");
     }
   };
