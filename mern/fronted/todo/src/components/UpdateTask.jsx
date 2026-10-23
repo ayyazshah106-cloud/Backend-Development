@@ -5,6 +5,7 @@ const UpdateTask = () => {
   const { id } = useParams();
   const [task, setTask] = useState("");
   const navigate = useNavigate();
+
   useEffect(() => {
     fetchValue();
   }, []);
@@ -12,9 +13,26 @@ const UpdateTask = () => {
   const fetchValue = async () => {
     let res = await fetch(`http://localhost:3200/updateTask/${id}`);
     res = await res.json();
-    setTask(res.result);
+    if (res.result) {
+      setTask(res.result);
+    }
   };
-  console.log(task);
+  // console.log(task);
+
+  const taskUpdate = async (id) => {
+    let resUpate = await fetch("http://localhost:3200/taskUpdate", {
+      method: "put",
+      body: JSON.stringify(task),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    resUpate = await resUpate.json();
+    if (resUpate) {
+      navigate("/");
+    }
+  };
+
   return (
     <div
       className=" w-[700px] h-[520px] shadow-md  rounded-[8px] justify-self-center p-10
@@ -26,7 +44,7 @@ const UpdateTask = () => {
           Title
         </label>
         <input
-          value={task.Title}
+          value={task?.Title}
           onChange={(e) => setTask({ ...task, Title: e.target.value })}
           className="border rounded-sm border-gray-300 font-thin placeholder:text-gray-500 text-[18px] p-1 focus:outline-none "
           type="text"
@@ -37,7 +55,7 @@ const UpdateTask = () => {
           Descrption:
         </label>
         <textarea
-          value={task.Description}
+          value={task?.Description}
           onChange={(e) => setTask({ ...task, Description: e.target.value })}
           className="w-full h-32 max-h-32 p-1 border rounded-sm border-gray-300 font-thin placeholder:text-gray-500  text-[18px] focus:outline-none overflow-y-auto
   "
@@ -46,7 +64,7 @@ const UpdateTask = () => {
           placeholder="Enter task Description"
         />
         <button
-          onClick={UpdateTask}
+          onClick={() => taskUpdate(id)}
           className="place-items-center bg-blue-600 text-[18px] p-1 text-white rounded-2xl mt-4 hover:cursor-pointer hover:bg-blue-700 font-mono "
         >
           Update Task

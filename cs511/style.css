@@ -1,0 +1,124 @@
+/* Page styling */
+
+body {
+  margin: 0;
+  padding: 20px;
+  background: #1b1b1b;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Main container */
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: #2d2d2d;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+/* Heading */
+
+h1,
+h2,
+h3 {
+  text-align: center;
+}
+
+/* Form */
+
+form {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Input */
+
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Button */
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background: #28a745;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Hover effect */
+
+button:hover {
+  background: #1d7f34;
+}
+
+/* Table */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+/* Table border */
+
+table,
+th,
+td {
+  border: 1px solid white;
+}
+
+/* Table cells */
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+/* Alternate rows */
+
+tr:nth-child(even) {
+  background: #3b3b3b;
+}
+
+/* Mobile Responsive */
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  input {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+}

@@ -13,7 +13,7 @@ const List = () => {
     responce = await responce.json();
     settaskDAta(responce.result);
   };
-  console.log(taskData);
+  // console.log(taskData);
 
   const deleteTask = async (id) => {
     try {

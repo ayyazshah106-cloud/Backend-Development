@@ -6,6 +6,7 @@ import { ObjectId } from "mongodb";
 const app = express();
 app.use(express.json());
 app.use(cors());
+
 app.post("/add",async (req,res)=>{
  const db = await connection();
  const collection = await db.collection(collectionName);
@@ -69,7 +70,7 @@ app.get("/updateTask/:id",async (req,res)=>{
   const id = req.params.id;
   const db = await connection();
   const collection = await db.collection(collectionName)
-  const result = await collection.findOne({_id:new ObjectId(id)}).toArray()
+  const result = await collection.findOne({_id:new ObjectId(id)})
  if(result){
   res.send({
     massage : "Task has been send",result,
@@ -80,6 +81,26 @@ app.get("/updateTask/:id",async (req,res)=>{
   res.send({massage : "try after some times", success :false})
  };
  
+})
+
+app.put("/taskUpdate",async (req,res)=>{
+ 
+  const db = await connection();
+  const collection = await db.collection(collectionName);
+  const {_id,...fields}= req.body;
+  const update = {$set:fields}
+  
+  const result = await collection.updateOne({_id:new ObjectId(_id)},update)
+ if(result){
+  res.send({
+    massage : "Task has been update",result,
+    success:true
+  })
+ }
+ else {
+  res.send({massage : "try after some times", success :false})
+ };
+
 })
 
 
