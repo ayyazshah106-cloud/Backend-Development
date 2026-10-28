@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const List = () => {
   const [taskData, settaskDAta] = useState();
+  const [checked, setchecked] = useState([]);
   useEffect(() => {
     listApi();
   }, []);
@@ -31,11 +32,55 @@ const List = () => {
     }
   };
 
+  const sellectAll = (e) => {
+    if (e.target.checked) {
+      let items = taskData.map((item) => item._id);
+      setchecked(items);
+    } else {
+      setchecked([]);
+    }
+  };
+  console.log(checked);
+
+  const singleCheckBox = (id) => {
+    console.log(id);
+    if (checked.includes(id)) {
+      let singleCheckBox = checked.filter((item) => item !== id);
+
+      setchecked(singleCheckBox);
+    } else {
+      setchecked([id, ...checked]);
+    }
+  };
+
+  const deleteMultiple = async () => {
+    console.log(checked);
+    let res = await fetch("http://localhost:3200/delete-multiple", {
+      method: "delete",
+      body: JSON.stringify(checked),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (res) {
+      listApi();
+    }
+  };
+
   return (
     <div className="flex flex-col justify-center items-center p-5">
       <h1 className="font-bold text-5xl my-11">Todo List App</h1>
+      <button
+        onClick={deleteMultiple}
+        className="bg-red-500 text-white text-[22px] px-4 py-2 my-4 rounded-[3px] text-center hover:bg-red-800 hover:cursor-pointer self-baseline"
+      >
+        Delete
+      </button>
       <div className="w-full">
         <ul className="flex gap-1.5 w-full">
+          <li className="bg-gray-600 text-white p-3 text-3xl rounded-[3px] w-30 font-medium  ">
+            <input onChange={sellectAll} type="checkbox" />
+          </li>
           <li className="bg-gray-600 text-white p-3 text-3xl rounded-[3px] w-30 font-medium  ">
             S.no
           </li>
@@ -53,6 +98,13 @@ const List = () => {
         {taskData &&
           taskData.map((items, index) => (
             <div className="flex gap-1.5 w-full mt-3.5 list-none" key={index}>
+              <li className="bg-[#f0f0f0] border border-[#cccccc57] font-medium text-black p-3 text-3xl rounded-[5px] w-30    ">
+                <input
+                  onChange={() => singleCheckBox(items._id)}
+                  type="checkbox"
+                  checked={checked.includes(items._id)}
+                />
+              </li>
               <li className="bg-[#f0f0f0] border border-[#cccccc57] font-medium text-black p-3 text-3xl rounded-[5px] w-30    ">
                 {index + 1}
               </li>

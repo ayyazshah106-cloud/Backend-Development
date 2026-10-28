@@ -2,10 +2,75 @@ import express from "express";
 import {connection,collectionName} from "./dbConfig.js"
 import cors from 'cors'
 import { ObjectId } from "mongodb";
+import jwt from "jsonwebtoken";
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+app.post("/Sign-up",async (req,res)=>{
+  const userData = req.body;
+  if(userData.email && userData.password){
+    const db = await connection();
+    const collection = await db.collection('user');
+    const result = await collection.insertOne(userData);
+    if(result){
+      
+         jwt.sign(userData,"Google",{expiresIn:"5d"},(error,token)=>{
+      console.log(token)
+      res.send({
+        susscfull :true,
+        massage :"sign up sussecsfull",
+        token
+      })
+
+    })
+    }else{
+       res.send({
+        susscfull :false,
+        massage :"sign up not sussecsfull",
+        token
+      })
+
+    }
+ 
+
+  }
+
+
+})
+
+app.post("/Log-in",async (req,res)=>{
+  const userData = req.body;
+  if(userData.email && userData.password){
+    const db = await connection();
+    const collection = await db.collection('user');
+    const result = await collection.findOne({email:userData.email,password:userData.password});
+    if(result){
+         jwt.sign(userData,"Google",{expiresIn:"5d"},(error,token)=>{
+      console.log(token)
+      res.send({
+       success: true,
+          message: "Login successful",
+          token,
+      })
+
+    })
+    }
+    else{
+         res.send({
+       success: false,
+      message: "Server error",
+       
+      })
+    }
+
+ 
+
+  }
+
+
+})
 
 app.post("/add",async (req,res)=>{
  const db = await connection();
@@ -62,6 +127,25 @@ if(result)(
  };
 })
 
+app.delete("/delete-multiple",async (req,res)=>{
+ 
+  const db = await connection();
+  const ids = req.body;
+  const deleteTaskIds = ids.map((item)=>new ObjectId(item))
+  const collection = await db.collection(collectionName);
+  console.log(ids)
+
+const result = await collection.deleteMany({_id:{$in:deleteTaskIds}})
+if(result)(
+  res.send({
+    massage:"task has been deleted",result,
+    success:true
+  })
+)
+ else {
+  res.send({massage : "try after some times", success :false})
+ };
+})
 
 
 
@@ -102,6 +186,8 @@ app.put("/taskUpdate",async (req,res)=>{
  };
 
 })
+
+
 
 
 app.get("/",(req,res)=>{
