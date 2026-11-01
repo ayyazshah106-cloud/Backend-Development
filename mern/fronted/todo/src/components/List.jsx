@@ -10,7 +10,9 @@ const List = () => {
     listApi();
   }, []);
   const listApi = async () => {
-    let responce = await fetch("http://localhost:3200/add-list");
+    let responce = await fetch("http://localhost:3200/add-list", {
+      credentials: "include",
+    });
     responce = await responce.json();
     settaskDAta(responce.result);
   };

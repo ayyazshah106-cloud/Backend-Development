@@ -13,6 +13,6 @@ const client = new MongoClient(url);
 
 export const connection = async () => {
   await client.connect();
-  console.log('db has been connected')
+  // console.log('db has been connected')
   return client.db(dbName);
 };

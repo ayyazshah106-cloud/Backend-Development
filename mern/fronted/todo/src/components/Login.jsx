@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [userData, setuserData] = useState("");
+  const navigate = useNavigate();
+  const [userData, setuserData] = useState({
+    email: "",
+    password: "",
+  });
   console.log(userData);
 
   const loginDataHandle = async () => {
@@ -17,7 +21,11 @@ const Login = () => {
     const result = await res.json();
 
     if (result) {
-      document.cookie = "token=" + result.token;
+      navigate("/");
+      console.log(accessToken);
+      alert(result.message);
+      document.cookie = "token=" + result.accessToken;
+      const accessToken = result.accessToken;
     }
   };
 

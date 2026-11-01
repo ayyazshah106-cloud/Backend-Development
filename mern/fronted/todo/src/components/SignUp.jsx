@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  const [userData, setuserData] = useState("");
+  const navigate = useNavigate();
+  const [userData, setuserData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   console.log(userData);
 
   const dataSubmit = async () => {
@@ -17,8 +22,9 @@ const SignUp = () => {
     const result = await res.json();
 
     if (result) {
-      console.log("sign up has been done");
+      alert(result.message);
       document.cookie = "token=" + result.token;
+      navigate("/Login");
     }
   };
 
